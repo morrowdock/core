@@ -2,7 +2,7 @@
 import PackageDescription
 import Foundation
 var packages: [Package.Dependency] = [.package(path: "..")]
-var products: [Target.Dependency] = [.product(name: "MorrowdockCore", package: "MorrowdockCore")]
+var products: [Target.Dependency] = [.product(name: "MorrowdockCore", package: "core")]
 if let path = ProcessInfo.processInfo.environment["MORROWDOCK_PRIVATE_PACKAGE"], !path.isEmpty {
  packages.append(.package(name: "MorrowdockPrivate", path: path))
  products.append(.product(name: "MorrowdockPrivate", package: "MorrowdockPrivate"))

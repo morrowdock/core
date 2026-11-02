@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "status": "reviewed local source inventory; public release pending",
+  "status": "private GitHub working candidate; public release not authorized",
   "files": [
     {
       "path": ".github/ISSUE_TEMPLATE/bug.md",
@@ -16,7 +16,7 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "cff1eaf28ef7d1a86f4c6f9f5b241267c76ff90f327739716ecec38c249c435f"
+      "sha256": "ed218d86d9844b3651cb0ed358c0809c38081f9e69064e4a882c07ac477777ce"
     },
     {
       "path": ".gitignore",
@@ -36,7 +36,7 @@
     },
     {
       "path": "Composition/Package.swift",
-      "sha256": "c486c3790d7686f75c7e6d81acf79d9c51370974f1a20f7c9e1554456b72d54a"
+      "sha256": "faad20f0fc9af4a967aa2aa30efe047dd671edfb7a647f044d46e8ef254c1d09"
     },
     {
       "path": "Composition/Sources/MorrowdockComposition/Composition.swift",
@@ -60,7 +60,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "8120b3d71c8ad5dd59d543ff59bf8b7a0961fdfa77be00b35f6ea850d6732a7b"
+      "sha256": "b8489f2e8644442860f163e1a7671ab8c63b58e5cbb94e1d54637487054d2e48"
     },
     {
       "path": "SECURITY.md",
@@ -112,7 +112,7 @@
     },
     {
       "path": "THIRD-PARTY.md",
-      "sha256": "2253d8019c5204915eb13b8d9d181be9379e724d125590b18f3cfe29bb7178ec"
+      "sha256": "70600fb2a09d74f847a8bb6c51dcd6f1d2a472b634c0d9a01cb62d9566175c0a"
     },
     {
       "path": "TRADEMARKS.md",

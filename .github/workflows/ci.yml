@@ -1,5 +1,5 @@
 name: validation
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
@@ -8,11 +8,12 @@ jobs:
     container: swift:6.0
     steps:
       - run: apt-get update && apt-get install -y python3 git
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
           persist-credentials: false
       - run: swift test
+      - run: swift build --package-path Composition
       - run: python3 -m unittest discover -s learning/tests
       - if: github.event_name == 'pull_request'
         run: python3 tools/check_dco.py "${{ github.event.pull_request.base.sha }}"
