@@ -24,7 +24,7 @@
     },
     {
       "path": "CODE_OF_CONDUCT.md",
-      "sha256": "634da34191a3a65251f18ec664f7cf63ea627f9a0df2fe933f83e0b204162fe8"
+      "sha256": "ed7b9bcafcfd5a06d85dd21ae688a06499acde237874c20a265b3a77d49efc8b"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -64,7 +64,7 @@
     },
     {
       "path": "SECURITY.md",
-      "sha256": "ac7b0df28d9db52b140349596fffcd6616335692c524301db642b9ffa994d8c0"
+      "sha256": "13d9e80b04c2b26777bf017d812b35d0d8f88c446e5f1ff855f4dc753a19e84c"
     },
     {
       "path": "Sources/MorrowdockCore/AppleProvider.swift",
