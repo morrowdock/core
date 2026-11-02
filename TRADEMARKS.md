@@ -1,0 +1,1 @@
+Morrowdock and Marty names, mascot and logos are reserved branding. Code/content licenses grant no trademark endorsement. Truthful descriptive attribution is permitted; forks must distinguish themselves and avoid implying official status. No registration or clearance claim is made. No artwork is included.

@@ -1,0 +1,54 @@
+{
+  "status": "verified source bytes before documented adaptations; rights review pending",
+  "date": "2026-11-02",
+  "files": [
+    {
+      "commit": "c7a6dc0f746f0b7a4bd52bcf5969dca7bb3dd7d1",
+      "path": "native-study/Core/Sources/StudyCore/CourseBundle.swift",
+      "destination": "Sources/MorrowdockCore/CourseBundle.swift",
+      "sha256": "94e11ba755b4d8f5829daea435dba148d491c4cbc2a7ec56a8a2f23d83fd18b7"
+    },
+    {
+      "commit": "2b9464af801951b207460020aaf57fd1dbd53808",
+      "path": "native-study/Core/Sources/StudyCore/TerminalLab.swift",
+      "destination": "Sources/MorrowdockCore/TerminalLab.swift",
+      "sha256": "36f29b67d9b65c5beafb0d078ae4d31a4371686afd459f57bb1567b772104444"
+    },
+    {
+      "commit": "2b9464af801951b207460020aaf57fd1dbd53808",
+      "path": "native-study/Core/Sources/StudyCore/TerminalGit.swift",
+      "destination": "Sources/MorrowdockCore/TerminalGit.swift",
+      "sha256": "0e7613716988db7c5741d962299511dff07031a4c513bba92ee4c8d1e8e0968c"
+    },
+    {
+      "commit": "2b9464af801951b207460020aaf57fd1dbd53808",
+      "path": "native-study/Core/Sources/StudyCore/TerminalMission.swift",
+      "destination": "Sources/MorrowdockCore/TerminalMission.swift",
+      "sha256": "a7e9cb75213c080a2b2afef7900e8ef4eb87b12d6eec70c4691445f466a23372"
+    },
+    {
+      "commit": "2b9464af801951b207460020aaf57fd1dbd53808",
+      "path": "native-study/Core/Tests/StudyCoreTests/TerminalLabTests.swift",
+      "destination": "Tests/MorrowdockCoreTests/TerminalLabTests.swift",
+      "sha256": "1229b0110e9c0a7b863cd0f89d13f68de0f230f2a8728a443551a7622e967bd0"
+    },
+    {
+      "commit": "c7a6dc0f746f0b7a4bd52bcf5969dca7bb3dd7d1",
+      "path": "source/study_game_domain.py",
+      "destination": "learning/study_game_domain.py",
+      "sha256": "41f97a96a99223ec01d4400fc2d5d4724d7e01ad501ec375f79ea85e5dd0a889"
+    },
+    {
+      "commit": "c7a6dc0f746f0b7a4bd52bcf5969dca7bb3dd7d1",
+      "path": "source/study_game_practice.py",
+      "destination": "learning/study_game_practice.py",
+      "sha256": "4c6b26db878c4850115011054e0b7dede0f641d6d5507921f0f605bdfba25a9c"
+    },
+    {
+      "commit": "c7a6dc0f746f0b7a4bd52bcf5969dca7bb3dd7d1",
+      "path": "source/study_game_verification.py",
+      "destination": "learning/study_game_verification.py",
+      "sha256": "d3ae6fd024cc765bfadd39283cafd65647fe2d1263908bd50e1d5ea6ecfce199"
+    }
+  ]
+}

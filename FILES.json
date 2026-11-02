@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-02",
+  "status": "reviewed local source inventory; public release pending",
+  "files": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug.md",
+      "sha256": "fa6bcc8cfdfe1e97cc2e0b530eae03d351ebe58c505736307d37086c82e50781"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/course.md",
+      "sha256": "1e50725dcdfdf0f6ba2a4afbf147a76d2d6539cf03039e4bd23cb86188b2a473"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "sha256": "a2147908156e05a52b6d63be3587bede7b9465a5d28d8e12419c2b46b876954c"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "cff1eaf28ef7d1a86f4c6f9f5b241267c76ff90f327739716ecec38c249c435f"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "fa3789407a8137a8cd505b86494926534dfe71fcd64ce86c7a3fb5253867c6d0"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "sha256": "634da34191a3a65251f18ec664f7cf63ea627f9a0df2fe933f83e0b204162fe8"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "b061a7cc5473e063aad0efe8f2c4ad90fe1681383632dfe0b902a6e3dabd3f51"
+    },
+    {
+      "path": "Composition/.gitignore",
+      "sha256": "acc718146d21aae829cba1761475e05de39d73209d83af2ab8487a74843cead0"
+    },
+    {
+      "path": "Composition/Package.swift",
+      "sha256": "c486c3790d7686f75c7e6d81acf79d9c51370974f1a20f7c9e1554456b72d54a"
+    },
+    {
+      "path": "Composition/Sources/MorrowdockComposition/Composition.swift",
+      "sha256": "444aecf1b3c28a29c2814ed41871c1b3b6377c34e0a181267e2b584f2df7e08b"
+    },
+    {
+      "path": "EXTRACTION.json",
+      "sha256": "131bee8e4bba4e4f865c173c81d781d8e16a03f289c6d72b69b6eacaa6d04b3f"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "998fd646fcec487321cf9da9df3cb73991e205924bd7a8152631e9e54df0cb6b"
+    },
+    {
+      "path": "Package.swift",
+      "sha256": "4d2a1e54320add72d0da39f3c8655ca89d8595bb0c5b9455ea197822a513d76b"
+    },
+    {
+      "path": "README.md",
+      "sha256": "0685870d7d009fa38c1616bac51df83d52197de2f3fd7b687a5a25408d4caa1c"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "ac7b0df28d9db52b140349596fffcd6616335692c524301db642b9ffa994d8c0"
+    },
+    {
+      "path": "Sources/MorrowdockCore/AppleProvider.swift",
+      "sha256": "fd0b2fa47554c977514e92a0368dd6a64cc30045e32beed5f5ef56ca62380087"
+    },
+    {
+      "path": "Sources/MorrowdockCore/CatalogFormat.swift",
+      "sha256": "9e218b87cb56607550b3103bc5cac2cb3b2f48f5d5dabaced07cb03b776bf7a8"
+    },
+    {
+      "path": "Sources/MorrowdockCore/CourseBundle.swift",
+      "sha256": "94e11ba755b4d8f5829daea435dba148d491c4cbc2a7ec56a8a2f23d83fd18b7"
+    },
+    {
+      "path": "Sources/MorrowdockCore/DirectProvider.swift",
+      "sha256": "837cc52d0681014e817cf098afb901eb882f58c974b0bd34d090cbc5df26e525"
+    },
+    {
+      "path": "Sources/MorrowdockCore/LocalRunner.swift",
+      "sha256": "8fd779e8c875d79b39545d423939055debc0ca71014ec3d2214217c27f64881f"
+    },
+    {
+      "path": "Sources/MorrowdockCore/PlusClient.swift",
+      "sha256": "a26cda578b115bf165d4bfb9eb0836a49ff3cd391ceeeb829d803e40dd4ec9b6"
+    },
+    {
+      "path": "Sources/MorrowdockCore/ProjectFormat.swift",
+      "sha256": "b0927ed0a690a974b85ed639194035bcd3786fa10a0149a0679666fabf864de4"
+    },
+    {
+      "path": "Sources/MorrowdockCore/Services.swift",
+      "sha256": "e6320ed28756012d96dea61dc0e50272acff21cd12dcd492a1720e8ef9e42583"
+    },
+    {
+      "path": "Sources/MorrowdockCore/TerminalGit.swift",
+      "sha256": "0e7613716988db7c5741d962299511dff07031a4c513bba92ee4c8d1e8e0968c"
+    },
+    {
+      "path": "Sources/MorrowdockCore/TerminalLab.swift",
+      "sha256": "36f29b67d9b65c5beafb0d078ae4d31a4371686afd459f57bb1567b772104444"
+    },
+    {
+      "path": "Sources/MorrowdockCore/TerminalMission.swift",
+      "sha256": "a7e9cb75213c080a2b2afef7900e8ef4eb87b12d6eec70c4691445f466a23372"
+    },
+    {
+      "path": "THIRD-PARTY.md",
+      "sha256": "2253d8019c5204915eb13b8d9d181be9379e724d125590b18f3cfe29bb7178ec"
+    },
+    {
+      "path": "TRADEMARKS.md",
+      "sha256": "bace4b82f63e1523c3c0edb3fcf4f941e330a4543f90e70ede815ded7510861c"
+    },
+    {
+      "path": "Tests/MorrowdockCoreTests/FormatTests.swift",
+      "sha256": "c5f681d8c001eb077d07102ca2d127b1935838834da5614a3816d34da7589618"
+    },
+    {
+      "path": "Tests/MorrowdockCoreTests/ServiceTests.swift",
+      "sha256": "079bc32808909564a2e9f72dc9f9be05b9d786a086da70cce475458ba3738663"
+    },
+    {
+      "path": "Tests/MorrowdockCoreTests/TerminalLabTests.swift",
+      "sha256": "cb13d470c865c257cf9b307660099e0d5f42244123084eabc39508427142c9ac"
+    },
+    {
+      "path": "learning/docs/STUDY-GAME-CONTRACT.json",
+      "sha256": "dffe0bf31a9022c6a59044a3685302961068a63a8fbc96bfcc17e391f12912b3"
+    },
+    {
+      "path": "learning/study_game_domain.py",
+      "sha256": "41f97a96a99223ec01d4400fc2d5d4724d7e01ad501ec375f79ea85e5dd0a889"
+    },
+    {
+      "path": "learning/study_game_practice.py",
+      "sha256": "4c6b26db878c4850115011054e0b7dede0f641d6d5507921f0f605bdfba25a9c"
+    },
+    {
+      "path": "learning/study_game_verification.py",
+      "sha256": "d3ae6fd024cc765bfadd39283cafd65647fe2d1263908bd50e1d5ea6ecfce199"
+    },
+    {
+      "path": "learning/tests/test_study_game_domain.py",
+      "sha256": "01d057649056b8ee0e9f059784a6210e643a2c72d7ec174cf62d5d97e102c8cd"
+    },
+    {
+      "path": "tools/check_dco.py",
+      "sha256": "0960ae93203836cd70328402153220ee52522c11540e531a720977ecaf5ef494"
+    }
+  ]
+}
