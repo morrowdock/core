@@ -60,11 +60,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "0685870d7d009fa38c1616bac51df83d52197de2f3fd7b687a5a25408d4caa1c"
+      "sha256": "8120b3d71c8ad5dd59d543ff59bf8b7a0961fdfa77be00b35f6ea850d6732a7b"
     },
     {
       "path": "SECURITY.md",
-      "sha256": "13d9e80b04c2b26777bf017d812b35d0d8f88c446e5f1ff855f4dc753a19e84c"
+      "sha256": "c5de7c092c7eddf66c62a311a34e059fedbc95224badacc1231ea016eaf60197"
     },
     {
       "path": "Sources/MorrowdockCore/AppleProvider.swift",
