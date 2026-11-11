@@ -68,7 +68,7 @@
     },
     {
       "path": "SECURITY.md",
-      "sha256": "c4a97eb96a0fd75196aae0968309f26a2e94d4d0c586bdd72745b683fae956bd"
+      "sha256": "9a2e1b57d39551928d491627a51b4329c4e5e5ef75a0af45439da0ffdca63b1a"
     },
     {
       "path": "Sources/MorrowdockCore/AppleProvider.swift",
