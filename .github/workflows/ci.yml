@@ -16,4 +16,9 @@ jobs:
       - run: swift build --package-path Composition
       - run: python3 -m unittest discover -s learning/tests
       - if: github.event_name == 'pull_request'
-        run: python3 tools/check_dco.py "${{ github.event.pull_request.base.sha }}"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          python3 tools/check_dco.py "$BASE_SHA" "$HEAD_SHA"

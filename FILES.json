@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-02",
-  "status": "private GitHub working candidate; public release not authorized",
+  "date": "2026-11-11",
+  "status": "early-preview candidate inventory; release gates recorded 2026-11-11; visibility change is owner/coordinator-only",
   "files": [
     {
       "path": ".github/ISSUE_TEMPLATE/bug.md",
@@ -16,7 +16,7 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "ed218d86d9844b3651cb0ed358c0809c38081f9e69064e4a882c07ac477777ce"
+      "sha256": "97bb3128fdcd014f570aba89f58a00dd9510950a7e5d5a36ce2d5a2c777d4c21"
     },
     {
       "path": ".gitignore",
@@ -24,11 +24,11 @@
     },
     {
       "path": "CODE_OF_CONDUCT.md",
-      "sha256": "ed7b9bcafcfd5a06d85dd21ae688a06499acde237874c20a265b3a77d49efc8b"
+      "sha256": "a95cbeea0b79375cef0479d39f1fcc6fdd9db0dd97b2a3ae6d8d62f47d284ec2"
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "b061a7cc5473e063aad0efe8f2c4ad90fe1681383632dfe0b902a6e3dabd3f51"
+      "sha256": "1f6343e5e8b49ec34623b5ccef37a89c39a30d4f9351372a77c706a86d57f6c1"
     },
     {
       "path": "Composition/.gitignore",
@@ -43,8 +43,12 @@
       "sha256": "444aecf1b3c28a29c2814ed41871c1b3b6377c34e0a181267e2b584f2df7e08b"
     },
     {
+      "path": "DCO",
+      "sha256": "f7ac75b443f4ca16b503241344b41aeff9503b0c30bedc2b119551d83cb0fa90"
+    },
+    {
       "path": "EXTRACTION.json",
-      "sha256": "131bee8e4bba4e4f865c173c81d781d8e16a03f289c6d72b69b6eacaa6d04b3f"
+      "sha256": "2cd36d50aefdad403a8fdbcc92235c06a3df0fd399bae0fddd28fca8ed5a04e0"
     },
     {
       "path": "LICENSE",
@@ -52,7 +56,7 @@
     },
     {
       "path": "NOTICE",
-      "sha256": "998fd646fcec487321cf9da9df3cb73991e205924bd7a8152631e9e54df0cb6b"
+      "sha256": "2d02681fa9b1c2fe6bcfb136dd3680acba2e61516ede097c5edd32a502e08c95"
     },
     {
       "path": "Package.swift",
@@ -60,11 +64,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "b8489f2e8644442860f163e1a7671ab8c63b58e5cbb94e1d54637487054d2e48"
+      "sha256": "ad8953c53c3ceb5e00444b31f0116ce515c4337d407f9ad987d2d281f966ac35"
     },
     {
       "path": "SECURITY.md",
-      "sha256": "c5de7c092c7eddf66c62a311a34e059fedbc95224badacc1231ea016eaf60197"
+      "sha256": "c4a97eb96a0fd75196aae0968309f26a2e94d4d0c586bdd72745b683fae956bd"
     },
     {
       "path": "Sources/MorrowdockCore/AppleProvider.swift",
@@ -112,11 +116,11 @@
     },
     {
       "path": "THIRD-PARTY.md",
-      "sha256": "70600fb2a09d74f847a8bb6c51dcd6f1d2a472b634c0d9a01cb62d9566175c0a"
+      "sha256": "7738ff43bd1d46aaa36c171786850c7acc6240c858c4c604ed18600c7e8e2a99"
     },
     {
       "path": "TRADEMARKS.md",
-      "sha256": "bace4b82f63e1523c3c0edb3fcf4f941e330a4543f90e70ede815ded7510861c"
+      "sha256": "a6041d0de91652e9752b82dc43406d08338c3a490f2ff3a168da93b6637b8abd"
     },
     {
       "path": "Tests/MorrowdockCoreTests/FormatTests.swift",
@@ -152,7 +156,7 @@
     },
     {
       "path": "tools/check_dco.py",
-      "sha256": "0960ae93203836cd70328402153220ee52522c11540e531a720977ecaf5ef494"
+      "sha256": "d6f3693eebbc82a50402b89e4cbab9c3f8c73deae45fc30109cb4b10cfe1141f"
     }
   ]
 }
