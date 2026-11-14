@@ -12,22 +12,57 @@ jobs:
       - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea9
         with:
           script: |
-            // Inspect metadata only: never check out or execute pull-request code.
+            // Read GitHub data only. Never check out or execute pull-request code.
             const pr = context.payload.pull_request;
+            if (pr.labels.some(l => l.name === 'no-changelog')) return;
             const files = await github.paginate(github.rest.pulls.listFiles, {
               ...context.repo, pull_number: pr.number, per_page: 100
             });
-            if (pr.changed_files > files.length) {
-              core.setFailed('Incomplete file list; split this pull request.');
-              return;
-            }
+            if (pr.changed_files > files.length) throw new Error('Incomplete file list; split this pull request.');
             const exempt = path => path.startsWith('.github/') ||
-              /(^|\/)(tests?|Tests)(\/|$)/.test(path) ||
-              ['AGENTS.md', 'CONTRIBUTING.md', 'FILES.json', 'CHANGELOG.md'].includes(path);
-            const facing = files.some(f => !exempt(f.filename) ||
-              (f.previous_filename && !exempt(f.previous_filename)));
-            const changed = files.some(f => f.filename === 'CHANGELOG.md' &&
-              ['added', 'modified'].includes(f.status) && (f.additions || 0) > 0);
-            if (facing && !changed && !pr.labels.some(l => l.name === 'no-changelog')) {
-              core.setFailed('Add an entry to CHANGELOG.md or request the no-changelog label.');
+              /(^|\/)(tests?|Tests|docs)(\/|$)/.test(path) ||
+              /\.(test|spec)\.[^/]+$/.test(path) ||
+              ['AGENTS.md', 'CONTRIBUTING.md', 'FILES.json', 'CHANGELOG.md', 'website/CHANGELOG.md'].includes(path);
+            const paths = files.flatMap(f => [f.filename, f.previous_filename].filter(Boolean)).filter(p => !exempt(p));
+            const targets = paths.length ? ['CHANGELOG.md'] : [];
+            // Normalize whitespace and wrapped bullet lines; headings/prose are not entries.
+            function parse(text) {
+              const sections = new Map(); let section; let entry = -1;
+              for (const line of text.split(/\r?\n/)) {
+                if (/^## /.test(line)) {
+                  const m = /^## (?:\[([^\]]+)\]|(Unreleased|v?[\w.-]+))(?:\s+(?:-|—)\s+(\d{4}-\d{2}-\d{2}))?\s*$/.exec(line);
+                  section = undefined; entry = -1;
+                  if (m) {
+                    const id = (m[1] || m[2]).replace(/^v(?=\d)/, '');
+                    if (sections.has(id)) throw new Error('Duplicate changelog section');
+                    section = { id, dated: !!m[3], entries: [] }; sections.set(id, section);
+                  }
+                } else if (section && /^[-*] /.test(line)) {
+                  const value = line.slice(2).trim().replace(/\s+/g, ' ');
+                  entry = value ? section.entries.push(value) - 1 : -1;
+                } else if (section && entry >= 0 && /^\s+\S/.test(line)) {
+                  section.entries[entry] += ' ' + line.trim().replace(/\s+/g, ' ');
+                } else entry = -1;
+              }
+              return sections;
+            }
+            async function read(path, ref) {
+              try {
+                const { data } = await github.rest.repos.getContent({ ...context.repo, path, ref });
+                if (data.encoding !== 'base64' || typeof data.content !== 'string') throw new Error('Cannot read changelog bytes');
+                return Buffer.from(data.content, 'base64').toString('utf8');
+              } catch (error) { if (error.status === 404) return ''; throw error; }
+            }
+            for (const path of targets) {
+              const base = parse(await read(path, pr.base.sha));
+              const head = parse(await read(path, pr.head.sha));
+              const oldEntries = new Set([...base.values()].flatMap(s => s.entries));
+              const allEntries = new Set([...head.values()].flatMap(s => s.entries));
+              // An edited/moved old item cannot masquerade as a new entry. Publishing an
+              // Unreleased item into a dated section may move it, but must preserve its text.
+              const preserves = [...oldEntries].every(e => allEntries.has(e));
+              const fresh = [...head.values()].some(s =>
+                (s.id === 'Unreleased' || (s.dated && !base.has(s.id))) &&
+                s.entries.some(e => !oldEntries.has(e)));
+              if (!preserves || !fresh) core.setFailed(`Add a new nonempty entry to ${path} under [Unreleased] or a new dated version; preserve existing entries.`);
             }
