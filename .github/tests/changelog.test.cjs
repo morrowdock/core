@@ -23,7 +23,7 @@ for (const [name, head, options, failed] of [
   ['historical edit', base.replace('Old feature.', 'Edited old feature.'), {}, true],
   ['moved entry', '## [Unreleased]\n### Added\n- Old feature.\n## [1.0] - 2026-11-12\n', {}, true],
   ['new entry', valid, {}, false],
-  ['new dated release', base.replace('## [1.0]', '## [1.1] - 2026-11-14\n### Added\n- New feature.\n## [1.0]'), {}, false],
+  ['dated-only addition is rejected', base.replace('## [1.0]', '## [1.1] - 2026-11-14\n### Added\n- New feature.\n## [1.0]'), {}, true],
   ['old dated section addition', base+'- Another old release item.\n', {}, true],
   ['label skip', base, {labels:['no-changelog']}, false],
   ['path skip', base, {paths:['docs/guide.md','.github/workflows/ci.yml','tests/example.js']}, false],
@@ -81,3 +81,19 @@ for (const [name, head, options, failed] of [
 ]) test(name, async () => assert.equal(await check(head, options), failed));
 for (const category of ['Added','Changed','Deprecated','Removed','Fixed','Security'])
   test(`standard category ${category}`, async () => assert.equal(await check(note('- Visible note.').replace('### Added',`### ${category}`)),false));
+
+// Put preserved history before the open fence so rejection cannot be caused
+// merely by swallowing an old entry after an invalid closing marker.
+const afterHistory = content => base.replace('## [Unreleased]\n\n', '') + '\n## [Unreleased]\n### Added\n' + content;
+for (const fence of ['```','~~~']) {
+  test(`${fence} trailing info does not close`, async () =>
+    assert.equal(await check(afterHistory(`${fence}\n${fence}js\n- Hidden note.`)),true));
+  test(`${fence} longer marker with info does not close`, async () =>
+    assert.equal(await check(afterHistory(`${fence}\n${fence}${fence[0]}js\n- Hidden note.`)),true));
+  test(`${fence} whitespace before trailing text does not close`, async () =>
+    assert.equal(await check(afterHistory(`${fence}\n${fence} js\n- Hidden note.`)),true));
+  test(`${fence} longer whitespace-only closing marker works`, async () =>
+    assert.equal(await check(afterHistory(`${fence}\n- Code example.\n${fence}${fence[0]} \t\n- Visible note.`)),false));
+  test(`${fence} opening info is allowed`, async () =>
+    assert.equal(await check(afterHistory(`${fence}js\n- Code example.\n${fence}\n- Visible note.`)),false));
+}

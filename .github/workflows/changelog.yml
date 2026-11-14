@@ -43,7 +43,7 @@ jobs:
                   finish();
                   const marker = fenced[1];
                   if (!fence) fence = marker;
-                  else if (marker[0] === fence[0] && marker.length >= fence.length) fence = undefined;
+                  else if (marker[0] === fence[0] && marker.length >= fence.length && /^\s*$/.test(line.slice(fenced[0].length))) fence = undefined;
                   continue;
                 }
                 if (fence) continue;
@@ -87,7 +87,7 @@ jobs:
               // Unreleased item into a dated section may move it, but must preserve its text.
               const preserves = [...oldEntries].every(e => allEntries.has(e));
               const fresh = [...head.values()].some(s =>
-                (s.id === 'unreleased' || (s.dated && !base.has(s.id))) &&
+                s.id === 'unreleased' &&
                 s.entries.some(e => !oldEntries.has(e)));
-              if (!preserves || !fresh) core.setFailed(`Add a new nonempty entry to ${path} under [Unreleased] or a new dated version and a standard category; preserve existing entries.`);
+              if (!preserves || !fresh) core.setFailed(`Add a new nonempty entry to ${path} under [Unreleased] and a standard category; preserve existing entries.`);
             }
