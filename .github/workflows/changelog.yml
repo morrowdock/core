@@ -1,0 +1,33 @@
+name: Changelog
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled, ready_for_review]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea9
+        with:
+          script: |
+            // Inspect metadata only: never check out or execute pull-request code.
+            const pr = context.payload.pull_request;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              ...context.repo, pull_number: pr.number, per_page: 100
+            });
+            if (pr.changed_files > files.length) {
+              core.setFailed('Incomplete file list; split this pull request.');
+              return;
+            }
+            const exempt = path => path.startsWith('.github/') ||
+              /(^|\/)(tests?|Tests)(\/|$)/.test(path) ||
+              ['AGENTS.md', 'CONTRIBUTING.md', 'FILES.json', 'CHANGELOG.md'].includes(path);
+            const facing = files.some(f => !exempt(f.filename) ||
+              (f.previous_filename && !exempt(f.previous_filename)));
+            const changed = files.some(f => f.filename === 'CHANGELOG.md' &&
+              ['added', 'modified'].includes(f.status) && (f.additions || 0) > 0);
+            if (facing && !changed && !pr.labels.some(l => l.name === 'no-changelog')) {
+              core.setFailed('Add an entry to CHANGELOG.md or request the no-changelog label.');
+            }
