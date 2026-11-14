@@ -25,25 +25,50 @@ jobs:
               ['AGENTS.md', 'CONTRIBUTING.md', 'FILES.json', 'CHANGELOG.md', 'website/CHANGELOG.md'].includes(path);
             const paths = files.flatMap(f => [f.filename, f.previous_filename].filter(Boolean)).filter(p => !exempt(p));
             const targets = paths.length ? ['CHANGELOG.md'] : [];
-            // Normalize whitespace and wrapped bullet lines; headings/prose are not entries.
+            // Match the courses parser: ignore comments/code, require a release and
+            // standard category, and compare normalized visible bullet text.
             function parse(text) {
-              const sections = new Map(); let section; let entry = -1;
-              for (const line of text.split(/\r?\n/)) {
-                if (/^## /.test(line)) {
-                  const m = /^## (?:\[([^\]]+)\]|(Unreleased|v?[\w.-]+))(?:\s+(?:-|—)\s+(\d{4}-\d{2}-\d{2}))?\s*$/.exec(line);
-                  section = undefined; entry = -1;
-                  if (m) {
-                    const id = (m[1] || m[2]).replace(/^v(?=\d)/, '');
-                    if (sections.has(id)) throw new Error('Duplicate changelog section');
-                    section = { id, dated: !!m[3], entries: [] }; sections.set(id, section);
-                  }
-                } else if (section && /^[-*] /.test(line)) {
-                  const value = line.slice(2).trim().replace(/\s+/g, ' ');
-                  entry = value ? section.entries.push(value) - 1 : -1;
-                } else if (section && entry >= 0 && /^\s+\S/.test(line)) {
-                  section.entries[entry] += ' ' + line.trim().replace(/\s+/g, ' ');
-                } else entry = -1;
+              text = text.replace(/<!--[\s\S]*?(?:-->|$)/g, '');
+              const sections = new Map();
+              const categories = new Set(['added', 'changed', 'deprecated', 'removed', 'fixed', 'security']);
+              let section, category, fence, bullet = [];
+              function finish() {
+                const normalized = bullet.join(' ').replace(/[*_`~]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+                if (section && category && /[\p{L}\p{N}]/u.test(normalized)) section.entries.push(normalized);
+                bullet = [];
               }
+              for (const line of text.split(/\r?\n/)) {
+                const fenced = /^\s*(`{3,}|~{3,})/.exec(line);
+                if (fenced) {
+                  finish();
+                  const marker = fenced[1];
+                  if (!fence) fence = marker;
+                  else if (marker[0] === fence[0] && marker.length >= fence.length) fence = undefined;
+                  continue;
+                }
+                if (fence) continue;
+                const heading = /^(#{1,6})\s+(.+?)\s*#*\s*$/.exec(line);
+                if (heading) {
+                  finish();
+                  const depth = heading[1].length, title = heading[2];
+                  if (depth <= 2) {
+                    section = undefined; category = undefined;
+                    const version = /^\[([^\]]+)\](?:\s+-\s+(\d{4}-\d{2}-\d{2}))?$/.exec(title);
+                    if (depth === 2 && version) {
+                      const id = version[1].toLowerCase();
+                      if (sections.has(id)) throw new Error('Duplicate changelog section');
+                      section = { id, dated: !!version[2], entries: [] }; sections.set(id, section);
+                    }
+                  } else category = depth === 3 && categories.has(title.toLowerCase()) ? title.toLowerCase() : undefined;
+                  continue;
+                }
+                if (!section || !category) continue;
+                const item = /^[-*+]\s+(.*)$/.exec(line);
+                if (item) { finish(); bullet.push(item[1]); }
+                else if (bullet.length && /^ {2,}\S/.test(line)) bullet.push(line.trim());
+                else finish();
+              }
+              finish();
               return sections;
             }
             async function read(path, ref) {
@@ -62,7 +87,7 @@ jobs:
               // Unreleased item into a dated section may move it, but must preserve its text.
               const preserves = [...oldEntries].every(e => allEntries.has(e));
               const fresh = [...head.values()].some(s =>
-                (s.id === 'Unreleased' || (s.dated && !base.has(s.id))) &&
+                (s.id === 'unreleased' || (s.dated && !base.has(s.id))) &&
                 s.entries.some(e => !oldEntries.has(e)));
-              if (!preserves || !fresh) core.setFailed(`Add a new nonempty entry to ${path} under [Unreleased] or a new dated version; preserve existing entries.`);
+              if (!preserves || !fresh) core.setFailed(`Add a new nonempty entry to ${path} under [Unreleased] or a new dated version and a standard category; preserve existing entries.`);
             }
